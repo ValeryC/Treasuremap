@@ -49,7 +49,6 @@ const simulateAdventurers = (map, adventurers) => {
             let [name, x, y, orientation, movementSequence] = adventurers[i].map(val => isNaN(val) ? val : parseInt(val));
             let treasuresCollected = 0;
 
-            console.log(`[${name}] Position avant simulation : (${x}, ${y})`);
 
             const processMove = move => {
                 if (move === 'A') {
@@ -58,7 +57,6 @@ const simulateAdventurers = (map, adventurers) => {
                     if (map[newY][newX] && map[newY][newX].type === 'T' && map[newY][newX].count > 0) {
                         treasuresCollected += 1;
                         map[newY][newX].count -= 1;
-                        console.log(`[MoveForward] Position: (${newX}, ${newY}), Trésors restants : ${map[newY][newX].count}`);
                     }
 
                     x = newX;
@@ -70,7 +68,6 @@ const simulateAdventurers = (map, adventurers) => {
 
             movementSequence.split('').forEach(processMove);
 
-            console.log(`[${name}] Résultat final : (${x}, ${y}), Trésors ramassés : ${treasuresCollected}`);
             adventurerResults.push([name, x, y, orientation, treasuresCollected]);
 
             simulate(i + 1);
@@ -118,24 +115,19 @@ const main = () => {
     const inputLines = readInput(inputFileName);
 
     const mapDimensions = inputLines[0].split(' - ').slice(1).map(Number);
-    console.log('>>>mapDimensions', mapDimensions);
     const mapWidth = mapDimensions[0];
     const mapHeight = mapDimensions[1];
     const map = initializeMap(mapWidth, mapHeight);
 
     const mountainPositions = inputLines.filter(line => line.startsWith('M')).map(line => line.split(' - ').slice(1).map(Number));
     placeMountains(map, mountainPositions);
-    console.log('>>>mountainPositions', mountainPositions);
 
     const treasurePositions = inputLines.filter(line => line.startsWith('T')).map(line => line.split(' - ').slice(1).map(Number));
     placeTreasures(map, treasurePositions);
-    console.log('>>>treasurePositions', treasurePositions);
 
     const adventurerInfo = inputLines.filter(line => line.startsWith('A')).map(line => line.split(' - ').slice(1));
-    console.log('>>>adventurerInfo', adventurerInfo);
 
     const adventurerResults = simulateAdventurers(map, adventurerInfo);
-    console.log('>>>adventurerResults', adventurerResults);
 
     writeOutput(outputFileName, map, treasurePositions, adventurerResults);
 };
