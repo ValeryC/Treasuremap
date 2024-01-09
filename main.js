@@ -4,9 +4,9 @@ const initializeMap = require('./utils/initializeMap');
 const placeMountains = require('./utils/placeMountains');
 const placeTreasures = require('./utils/placeTreasures');
 const moveForward = require('./utils/moveForward');
-const turn = require('./utils/turn');
 const simulateAdventurers = require('./utils/simulateAdventurers');
 const writeOutput = require('./utils/writeOutput');
+const turn = require('./utils/turn');
 
 const main = () => {
     const inputFileName = 'input.txt';
