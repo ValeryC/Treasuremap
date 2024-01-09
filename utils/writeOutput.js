@@ -1,5 +1,4 @@
 const fs = require('fs');
-
 const writeOutput = (filename, map, treasures, adventurers) => {
     const output = [];
 
