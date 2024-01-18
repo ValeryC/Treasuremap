@@ -112,6 +112,7 @@ console.log('>>>map94', map);
 //   [ { type: 'T', count: 0 }, { type: 'T', count: 2 }, '.' ]
 // ]
   writeOutput(outputFileName, map, treasurePositions, adventurerResults);
+  // Fichier de sortie écrit avec succès.
 };
 
 main();
